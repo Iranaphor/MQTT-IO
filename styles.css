@@ -1,0 +1,37 @@
+
+/* Default for the page */ 
+.general { 
+    background-color: rgb(255, 255, 255);
+    color: #ffffff;
+    margin: 0;
+}
+
+/* The Header bar used to control the session */
+.top-bar {
+    background-color: #115f9e;
+    height: 10vh;
+    width: 100vw;
+}
+
+/* The default css for the rest of the page */ 
+.main-block {
+    background-color: rgb(0, 0, 0);
+    height: 90vh;
+    width: 100vw;
+}
+
+/* Block containing the list of topics */ 
+.topic-block {
+    background-color: #263642;
+    height: 90vh;
+    width: 70vw;
+    float: left;
+}
+
+/* Block containing the topic feed */
+.feed-block {
+    background-color: #062136;
+    height: 90vh;
+    width: 30vw;
+    float: right;
+}
