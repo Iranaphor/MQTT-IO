@@ -1,6 +1,9 @@
 var mqtt;
 
-function onConnect() { console.log("Connected"); }
+function onConnect() {
+    console.log("Connected");
+    sub('feed')
+}
 function onFailure() { console.log("Failed to connected"); }
 
 function sub(topic) { mqtt.subscribe(topic); }
@@ -10,12 +13,14 @@ function pub(msg, topic) {
     mqtt.send(message);
 }
 
-const feed=document.getElementById("feed");
 function onMessageArrived(msg){
     data = msg.payloadString;
     topic = msg.destinationName;
     console.log(data);
-    feed.innerHTML = out_msg;
+
+    feed = document.getElementById("feed");
+    console.log(feed.innerHTML);
+    feed.innerHTML = data;
 }
 
 function onConnectionLost(responseObject) {

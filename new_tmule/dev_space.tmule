@@ -1,0 +1,15 @@
+---
+session: dev_space
+init_cmd: clear -x
+windows:
+
+- name: broker
+  panes:
+  - mosquitto -p 8883 -v -c ~/MQTT-IO/mosquito.conf
+  - nano ~/MQTT-IO/mosquito.conf
+  - mosquitto_pub -h localhost -p 8884 -m "hello" -t "feed" -r
+
+- name: site
+  panes:
+  - nano ~/MQTT-IO/index.html
+  - nano ~/MQTT-IO/js/mqtt.js
