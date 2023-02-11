@@ -35,8 +35,25 @@ function onConnectionLost(responseObject) {
 }
 
 // Call this function to begin connection process
-function MQTTconnect() {
+function MQTTconnectBtn() {
+    inp = document.getElementById("urlIn");
+    MQTTconnect(inp.value);
+}
+function MQTTconnect(url="ws://10.5.39.140:8883/") {
     console.log("connecting...");
+
+    mqtt = new Paho.MQTT.Client(url, "client_name");
+
+    console.log(mqtt)
+    console.log(mqtt.client_id)
+
+    var options = {onSuccess:onConnect, onFailure:onFailure};
+    mqtt.onMessageArrived = onMessageArrived;
+    mqtt.onConnectionLost = onConnectionLost;
+
+    mqtt.connect(options);
+}
+
 
 //    LCAS broker:
 //    ------------
@@ -57,14 +74,3 @@ function MQTTconnect() {
 //    The Paho Javascript driver requires the broker to support and be configured to accept connections from clients using MQTT over WebSockets.
 
 
-    mqtt = new Paho.MQTT.Client("ws://10.5.39.140:8883/", "client_name");
-
-    console.log(mqtt)
-    console.log(mqtt.client_id)
-
-    var options = {onSuccess:onConnect, onFailure:onFailure};
-    mqtt.onMessageArrived = onMessageArrived;
-    mqtt.onConnectionLost = onConnectionLost;
-
-    mqtt.connect(options);
-}
